@@ -1,0 +1,28 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <UserSecretsId>aspnet-PharmaceuticalsCompany-EB6E3533-5F8E-419A-8E86-A4BE0A40A77F</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Data\Migrations\20210124042121_Extend_IdentityUser.cs" />
+    <Compile Remove="Data\Migrations\20210124042121_Extend_IdentityUser.Designer.cs" />
+    <Compile Remove="Data\Migrations\20210125051608_Extend_IdentityUser.cs" />
+    <Compile Remove="Data\Migrations\20210125051608_Extend_IdentityUser.Designer.cs" />
+    <Compile Remove="Data\Migrations\20210125054947_Extend_IdentityUser.cs" />
+    <Compile Remove="Data\Migrations\20210125054947_Extend_IdentityUser.Designer.cs" />
+    <Compile Remove="Data\Migrations\20210126105107_EducationDetails.cs" />
+    <Compile Remove="Data\Migrations\20210126105107_EducationDetails.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FreeSpire.Office" Version="4.3.1" />
+    <PackageReference Include="MailKit" Version="2.10.1" />
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.9" />
+    <PackageReference Include="Syncfusion.DocIORenderer.Net.Core" Version="18.4.0.35" />
+  </ItemGroup>
+
+</Project>

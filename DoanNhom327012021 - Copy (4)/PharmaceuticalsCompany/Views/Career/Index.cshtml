@@ -1,0 +1,352 @@
+﻿
+@model PharmaceuticalsCompany.Models.Career.CareerModel
+@{
+    ViewData["Title"] = "Index";
+}
+@using Microsoft.AspNetCore.Identity
+
+<link rel="stylesheet" type="text/css" href="~/css/KimDat/IndexCareer.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+@ViewBag.Msg
+<div class="bg-contact2">
+
+    <div class="container-contact2">
+        <div class="wrap-contact2">
+            <div class="tab">
+
+                <div class="tab-inner">
+                    <button class="tablinks" onclick="openCity(event, 'personal')" id="defaultOpen">PersonalDetail</button>
+                </div>
+
+
+                <div class="tab-inner">
+
+                    <button class="tablinks" onclick="openCity(event, 'education')" id="tab2">EduacationDetail</button>
+                </div>
+
+                <div class="tab-inner">
+                    <button class="tablinks" onclick="openCity(event, 'resume')" id="tab3">Resume</button>
+                </div>
+
+            </div>
+            <div class="tabcontent" id="personal">
+                <form class="contact2-form validate-form" method="post" id="updatePersonal" asp-controller="Career" asp-action="EditProfile" enctype="multipart/form-data">
+
+
+                    <input type="hidden" value="@Model.Photo" name="Photo">
+                    <input readonly type="hidden" name="Id" value="@Model.Id">
+                    <img src="/@Model.Photo" width="200" height="100" />
+                    <div class="wrap-input2  ">
+                        <label> Email:</label>
+
+                        <input readonly class="input2" type="text" value="@Model.Email" name="Email">
+                        <span class="focus-input2"></span>
+
+
+                    </div>
+
+
+                    <div class="wrap-input2 validate-input" data-validate="Valid email is required: ex@abc.xyz">
+                        <label>FullName:</label>
+                        <input class="input2" type="text" value="@Model.FullName" name="FullName">
+                        <span class="focus-input2"></span>
+                    </div>
+                    <div class="wrap-input2 validate-input" data-validate="Valid email is required: ex@abc.xyz">
+                        <label> Address:</label>
+                        <input class="input2" type="text" value="@Model.Address" name="Address">
+                        <span class="focus-input2"></span>
+                    </div>
+                    <div class="wrap-input2 validate-input" data-validate="Valid email is required: ex@abc.xyz">
+                        <label>Phone:</label>
+                        <input class="input2" type="text" value="@Model.Phone" name="Phone">
+                        <span class="focus-input2"></span>
+                    </div>
+
+                    <div class="wrap-input2 validate-input" data-validate="Valid email is required: ex@abc.xyz">
+                        <label>DateOfBirth:</label>
+                        <input type="hidden" value="@Model.DateOfBirth" name="DateOfBirth">
+                        <input class="input2" type="date" name="chooseDateOfBirth">
+
+                        <span class="focus-input2"></span>
+                    </div>
+                    <div class="" data-validate="Valid email is required: ex@abc.xyz">
+                        <label>Gender:</label>
+                        <input type="hidden" value="" name="Gender" />
+                        @if (Model.Gender == true)
+                        {
+
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="Gender[]" id="exampleRadios1" value="male" checked>
+                                <label style="margin-left:15px" class="form-check-label" for="exampleRadios1">
+                                    Male
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="Gender[]" id="exampleRadios2" value="female">
+                                <label style="margin-left:15px" q accesskey="" class="form-check-label" for="exampleRadios2">
+                                    Female
+                                </label>
+                            </div>
+                        }
+
+                        else
+                        {
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" id="male" name="Gender[]" value="male">
+                                <label style="margin-left:15px" class="form-check-label" for="exampleRadios1">
+                                    Male
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" id="female" name="Gender[]" value="female" checked>
+                                <label style="margin-left:15px" class="form-check-label" for="exampleRadios2">
+                                    Female
+                                </label>
+                            </div>
+                        }
+
+
+                    </div>
+                    <div data-validate="Valid email is required: ex@abc.xyz">
+                        <div class="checkbox">
+                            <label><input type="checkbox" value="" name="checkbox"><b>Change Your Photo</b></label>
+                        </div>
+                        <div class="hidden photo" style="margin-bottom:20px">
+                            <input type="file" class="form-control" name="fileUser">
+                        </div>
+
+                    </div>
+                    <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Change password</button>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="myModal" role="dialog">
+                        <div class="modal-dialog">
+
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+
+                                    <h4 class="modal-title">Change PassWord</h4>
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                </div>
+                                <div class="modal-body">
+
+                                    <div class="form-group">
+                                        <label for="PassWord">Password:</label>
+                                        <input type="password" class="form-control" name="CurrentPassWord">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="pwd">NewPassword:</label>
+                                        <input type="password" class="form-control" name="NewPassWord">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="pwd">ConFirmPassword:</label>
+                                        <input type="password" class="form-control" name="ConFirmNewPassWord">
+                                    </div>
+                                    <div class="form-group">
+
+                                        <button type="submit" style="width:100%" class="btn btn-primary"> Submit </button>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="container-contact2-form-btn">
+                        <div class="wrap-contact2-form-btn">
+                            <div class="contact2-form-bgbtn"></div>
+                            <button class="contact2-form-btn" name="label" value="Personal">
+                                Update your personal detail
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="tabcontent" id="education">
+                <form class="educationform" method="post" asp-controller="Career" onsubmit="return Validation()" asp-action="EditEducation">
+               
+                    <div id="booking">
+                        @for (int i = 0; i < ViewBag.Education.Count; i++)
+                        {
+
+                            <div class="row">
+
+                                <fieldset class="booking-form">
+
+                                    <legend class="form-header">
+
+                                        School
+                                        @if (ViewBag.Education.Count > 1)
+                                        {
+                                            <button type="button" class="btn btn-danger remove">Remove</button>
+                                        }
+
+                                    </legend>
+
+                                    <div class="row no-margin">
+                                        <div class="col-md-6">
+                                            <div class="form-group separator">
+                                                <span class="form-label">Name_school</span>
+                                                <input class="form-control name_school" type="text"   value="@ViewBag.Education[i].Name_school" name="[@i].Name_school">
+
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <span class="form-label">Location</span>
+                                                <input class="form-control location" type="text" value="@ViewBag.Education[i].Location" name="[@i].Location">
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row no-margin">
+                                        <div class="col-md-6">
+                                            <div class="form-group separator">
+                                                <span class="form-label">Join Date</span>
+                                                <input type="hidden" value="@ViewBag.Education[i].JoinDate" name="[@i].JoinDate" class="JoinDate">
+                                                <input class="form-control chooseJoin" type="date" min="1951-01-01" max="date" name="[@i].chooseJoin">
+
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <span class="form-label">End Date</span>
+                                                <input type="hidden" value="@ViewBag.Education[i].EndDate" name="[@i].EndDate" class="EndDate">
+                                                <input class="chooseEnd form-control" type="date" name="[@i].chooseEnd">
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </div>
+
+
+                        }
+                    </div>
+                    <br />
+                    <div class="new" onclick='newwin()'>
+                        <a style="margin-left:20px;margin-top:20px"> + Add New School</a>
+                    </div>
+                    <div class="container-contact2-form-btn">
+                        <div class="wrap-contact2-form-btn">
+
+                            <div class="contact2-form-bgbtn"></div>
+                            <button class="contact2-form-btn" name="label" value="BtnEducation">
+                                Update your Education
+                            </button>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+
+            <!--
+            for (int i = 0; i < ViewBag.Education.Count; i++)
+            {
+
+                <input readonly type="text" name="ViewBag.Education[i].User_id">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="text" value="ViewBag.Education[i].Id" name="[i].Id" />
+                <div class="form-group">
+
+                    <input type="text" value="ViewBag.Education[i].Name_school" name="[i].Name_School" />
+
+                </div>
+                <div class="form-group">
+
+                    <input type="text" value="ViewBag.Education[i].Location" name="[i].Location" />
+                </div>
+                <div class="form-group">
+                    <input type="hidden" value="ViewBag.Education[i].JoinDate" name="[i].JoinDate" class="JoinDate">
+                    <input class="chooseJoin" type="date" min="1951-01-01" max="date" name="[i].chooseJoin">
+
+
+                </div>
+                <div class="form-group">
+                    <input type="hidden" value="ViewBag.Education[i].EndDate" name="[i].EndDate" class="EndDate">
+                    <input class="chooseEnd" type="date" name="[i].chooseEnd">
+
+                </div>
+            }
+
+
+            <i class="fas fa-trash-alt" style="margin-right:2px"></i><a>Delete </a>
+               -->
+
+
+            <div class="tabcontent" id="resume">
+                <form class="" method="post" asp-controller="Career" asp-action="EditResume" enctype="multipart/form-data">
+
+                    <input readonly type="hidden" value="@Model.Id" name="Id">
+                    <div class="frame" style="height:820px">
+                        <h1>Your Resume:</h1>
+
+                        <input type="hidden" name="Resume" value="@Model.Resume" />
+                        <embed id="embPDF" src="~/files/@Model.Resume" style="width:100%;height:350px" />
+                        <a href="../Career/PDFViewerNewTab?fileName=@Model.Resume" style="color:white;font-size:28px" target="_blank">click to watch your  resume on new tab</a>
+                        <div class="checkbox">
+                            <label><input type="checkbox" value="" name="checkboxResume"><b>Change Your Resume</b></label>
+                        </div>
+
+
+                        <div class="hidden centerIndex">
+                            <div class="bar"></div>
+                            <div class="title">Drop file to upload  Another Resume</div>
+
+                            <div class="dropzone">
+                                <div class="content">
+
+                                    <img src="https://100dayscss.com/codepen/upload.svg" class="upload">
+                                    <span class="filename"></span>
+
+                                    <input type="file" name="file" class="input">
+                                </div>
+                            </div>
+                            <img src="https://100dayscss.com/codepen/syncing.svg" class="syncing">
+                            <img src="https://100dayscss.com/codepen/checkmark.svg" class="done">
+
+                        </div>
+                    </div>
+                    <div class="container-contact2-form-btn">
+                        <div class="wrap-contact2-form-btn">
+                            <div class="contact2-form-bgbtn"></div>
+                            <button class="contact2-form-btn  " name="label" value="BtnResume">
+                                Update your Resume
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<button type="button"  class="btn btn-primary modalValid" data-toggle="modal" data-target="#ModalValid" >
+    Launch demo modal
+</button>
+<div class="modal fade" id="ModalValid" data-backdrop="static"  role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+           
+            <div class="modal-body">
+                <p></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="~/js/Kimdat/jquery-3.2.1.min.js"></script>
+<script src="~/js/Kimdat/main - Copy.js"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
+<script src="~/js/Kimdat/Education - Copy - Copy - Copy.js">
+
+
+</script>
